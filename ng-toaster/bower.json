@@ -1,0 +1,22 @@
+{
+  "name": "ng-toaster",
+  "homepage": "https://github.com/Jerry-web/AngularJS_1.X",
+  "authors": [
+    "Jerry-web "
+  ],
+  "description": "angular toaster",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-toaster": "angularjs-toaster#^2.0.0"
+  }
+}

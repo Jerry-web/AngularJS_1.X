@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="main">
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="bower_components/angularjs-toaster/toaster.css" />
+	
+
+	 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+	<script type="text/javascript" src='bower_components/angularjs-toaster/toaster.js'></script>
+</head>
+<body>
+<div ng-controller="myController">
+                    <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
+
+    <button ng-click="pop()">Show a Toaster</button>
+</div>
+<script type="text/javascript">
+	angular.module('main', ['toaster'])
+.controller('myController', function($scope, toaster) {
+    $scope.pop = function(){
+        toaster.pop('success', "title", "text");
+    };
+});
+</script>
+
+</body>
+</html>
