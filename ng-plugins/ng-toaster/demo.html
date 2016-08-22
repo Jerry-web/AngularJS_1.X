@@ -10,13 +10,15 @@
 <div ng-controller="myController">
                     <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
 
-    <button ng-click="pop()">Show a Toaster</button>
+    <button ng-click="pop('success')">Show a success Toaster</button>
+    <button ng-click="pop('error')">Show a error Toaster</button>
+    <button ng-click="pop('warning')">Show a warning Toaster</button>
 </div>
 <script type="text/javascript">
 	angular.module('main', ['toaster'])
 .controller('myController', function($scope, toaster) {
-    $scope.pop = function(){
-        toaster.pop('error', "title", "text");
+    $scope.pop = function(toasterType){
+        toaster.pop(toasterType, "title", "text");
     };
 });
 </script>
