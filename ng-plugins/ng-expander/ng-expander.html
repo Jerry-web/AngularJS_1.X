@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+  <meta charset="utf-8">
+</head>
+<body ng-app="myApp">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<script type="text/javascript" src='bower_components/angular/angular.min.js'></script>
+<style type="text/css">
+  .noborderbtn, .noborderbtn:active, .noborderbtn:hover {
+    cursor: pointer;
+    text-decoration: none;
+	color:#337ab7;
+}
+
+</style>
+<div  ng-controller="MyCtrl" style="width: 200px;margin: 40px auto;">
+    <ng-expander get-content="{{contents}}" display-num="20">
+
+    </ng-expander>
+</div>
+  <script type="text/javascript">
+  	var app=angular.module("myApp",[]);
+  	
+  	app.directive("ngExpander",function(){
+  		return{
+  			restrict:'AE',
+  			
+  			template:"<div><div ng-show='retractBtnVisible&&simpleContentVisible'>{{simpleStr}}<a class='noborderbtn' style='margin-left:10px' ng-click='exptoggle()'>展开</a></div>"+
+        "<div ng-show='!simpleContentVisible'>{{detailStr}}<a class='noborderbtn' ng-show='retractBtnVisible' style='margin-left:10px' ng-click='exptoggle()'>收起</a></div>"+
+        '</div>',
+  			scope:{
+  				getContent:'@',
+  				displayNum:'@'
+  			},
+  			controller:function($scope){
+          $scope.retractBtnVisible=true;
+          $scope.simpleContentVisible=true;
+		  var content=$scope.getContent;//获取内容信息
+          var num=parseInt($scope.displayNum);//获取需要展示的字节数
+          var charNum=content.length;//所有信息 的字节数
+          $scope.detailStr=content;
+
+          if(charNum>num){
+             $scope.simpleStr=content.substring(0,num)+"......"
+          }else{
+            $scope.retractBtnVisible=false;
+            $scope.simpleContentVisible=false;
+          }
+
+          $scope.exptoggle=function(){
+           var simVisible=$scope.simpleContentVisible;
+           $scope.simpleContentVisible=!simVisible;
+          }
+  			}
+  		}
+  	})
+	app.controller("MyCtrl",function($scope){
+  			$scope.contents="2016年8月21日里约奥运会中国女排成功打败塞尔维亚女排获得金牌";
+  		
+  		
+  	});
+  </script>
+  
+
+</body>
+</html>
